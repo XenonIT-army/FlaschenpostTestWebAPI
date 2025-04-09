@@ -1,0 +1,89 @@
+@FlaschenpostTestWebAPI_HostAddress = http://localhost:5173
+
+//Category test requests
+GET {{FlaschenpostTestWebAPI_HostAddress}}/api/category/
+Accept: application/json
+###
+GET {{FlaschenpostTestWebAPI_HostAddress}}/api/category/1
+Accept: application/json
+###
+
+POST {{FlaschenpostTestWebAPI_HostAddress}}/api/category/
+Content-Type: application/json
+{
+  "Title": "Test category",
+  "Description": "Test category Description"
+}
+###
+PUT {{FlaschenpostTestWebAPI_HostAddress}}/api/category/
+Content-Type: application/json
+{
+  "Id": 1,
+  "Title": "Test category with PUT request",
+  "Description": "Test category description"
+}
+###
+
+DELETE {{FlaschenpostTestWebAPI_HostAddress}}/api/category/
+Content-Type: application/json
+{
+  "Id": 1,
+  "Title": "Test category",
+  "Description": "Test category description"
+}
+###
+
+//TodoItem test requests
+
+GET {{FlaschenpostTestWebAPI_HostAddress}}/api/todoitem/
+Accept: application/json
+###
+
+GET {{FlaschenpostTestWebAPI_HostAddress}}/api/todoitem/1
+Accept: application/json
+###
+
+POST {{FlaschenpostTestWebAPI_HostAddress}}/api/todoitem/
+Content-Type: application/json
+{
+  "Title": "Test Todo",
+  "Description": "Test Todo description",
+  "IsCompleted": false,
+  "CreatedAt": "1985-01-26T00:00:00",
+  "DueDate": null,
+  "CompletedAt": null,
+  "Priority": 1,
+  "CategoryId": 1
+}
+###
+
+PUT {{FlaschenpostTestWebAPI_HostAddress}}/api/todoitem/
+Content-Type: application/json
+{
+  "Id": 1,
+  "Title": "Test Todo with PUT request",
+  "Description": "Test Todo description",
+  "IsCompleted": false,
+  "CreatedAt": "1985-01-26T00:00:00",
+  "DueDate": null,
+  "CompletedAt": null,
+  "Priority": 1,
+  "CategoryId": 1
+}
+###
+
+DELETE {{FlaschenpostTestWebAPI_HostAddress}}/api/todoitem/
+Content-Type: application/json
+{
+  "Id": 1,
+  "Title": "Test Todo",
+  "Description": "Test Todo description",
+  "IsCompleted": false,
+  "CreatedAt": "1985-01-26T00:00:00",
+  "DueDate": null,
+  "CompletedAt": null,
+  "Priority": 1,
+  "CategoryId": 1
+}
+###
+
