@@ -94,7 +94,7 @@ namespace FlaschenpostTestxUnit.ControllerTest
             Assert.True(res);
         }
         [Theory]
-        [InlineData("http://localhost:5173/api/todoitem/")]
+        [InlineData("http://localhost:5000/api/todoitem/")]
         public async Task Delete_TodoItem(string url)
         {
             // Arrange

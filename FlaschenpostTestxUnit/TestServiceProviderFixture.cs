@@ -29,6 +29,8 @@ namespace FlaschenpostTestxUnit
             services.AddScoped<IService<Category>, CategoryService>();
             services.AddScoped<IRepository<TodoItemDB>, TodoItemDBRepository>();
             services.AddScoped<IService<TodoItem>, TodoItemService>();
+            services.AddScoped<IRepository<ProjectDB>, ProjectDBRepository>();
+            services.AddScoped<IService<Project>, ProjectService>();
 
             ServiceProvider = services.BuildServiceProvider();
         }

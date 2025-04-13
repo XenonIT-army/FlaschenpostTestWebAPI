@@ -7,7 +7,7 @@
         Task<TEntityDto> AddAsync(TEntityDto dto);
         Task Update(TEntityDto dto);
         Task Delete(TEntityDto dto);
-        public Task<int> GetNextId(Func<TEntityDto, int> keySelector);
+        //public Task<int> GetNextId(Func<TEntityDto, int> keySelector);
         Task<bool> Save();
     }
 }

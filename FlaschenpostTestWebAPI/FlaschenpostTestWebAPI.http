@@ -1,4 +1,4 @@
-@FlaschenpostTestWebAPI_HostAddress = http://localhost:5173
+@FlaschenpostTestWebAPI_HostAddress = http://localhost:5000
 
 //Category test requests
 GET {{FlaschenpostTestWebAPI_HostAddress}}/api/category/
@@ -53,7 +53,7 @@ Content-Type: application/json
   "DueDate": null,
   "CompletedAt": null,
   "Priority": 1,
-  "CategoryId": 1
+  "ProjectId": 1
 }
 ###
 
@@ -63,12 +63,12 @@ Content-Type: application/json
   "Id": 1,
   "Title": "Test Todo with PUT request",
   "Description": "Test Todo description",
-  "IsCompleted": false,
+  "IsCompleted": true,
   "CreatedAt": "1985-01-26T00:00:00",
   "DueDate": null,
   "CompletedAt": null,
   "Priority": 1,
-  "CategoryId": 1
+  "ProjectId": 1
 }
 ###
 
@@ -83,6 +83,42 @@ Content-Type: application/json
   "DueDate": null,
   "CompletedAt": null,
   "Priority": 1,
+  "ProjectId": 1
+}
+###
+
+//Project test requests
+GET {{FlaschenpostTestWebAPI_HostAddress}}/api/project/
+Accept: application/json
+###
+GET {{FlaschenpostTestWebAPI_HostAddress}}/api/project/1
+Accept: application/json
+###
+
+POST {{FlaschenpostTestWebAPI_HostAddress}}/api/project/
+Content-Type: application/json
+{
+  "Title": "Test project",
+  "Description": "Test project Description",
+  "CategoryId": 1
+}
+###
+PUT {{FlaschenpostTestWebAPI_HostAddress}}/api/project/
+Content-Type: application/json
+{
+  "Id": 1,
+  "Title": "Test project with PUT request",
+  "Description": "Test project description",
+  "CategoryId": 1
+}
+###
+
+DELETE {{FlaschenpostTestWebAPI_HostAddress}}/api/project/
+Content-Type: application/json
+{
+  "Id": 1,
+  "Title": "Test project",
+  "Description": "Test project description",
   "CategoryId": 1
 }
 ###

@@ -18,8 +18,10 @@ namespace FlaschenpostTestxUnit.Item
     public static class StaticItem
     {
         public static TodoItem TodoItem { get; set; } = new TodoItem() { Title = "Test unit todoItem", Description = "Test description item", 
-            CategoryId = 1, CreatedAt = DateTime.UtcNow, IsCompleted = false, Priority = Priority.Low  };
+            ProjectId = 1, CreatedAt = DateTime.UtcNow, IsCompleted = false, Priority = Priority.Low  };
 
         public static Category Category { get; set; } = new Category() { Title = "Test unit category", Description = "Test description category" };
+        public static Project Project { get; set; } = new Project() { Title = "Test unit category", Description = "Test description category", CategoryId = 1 };
+
     }
 }

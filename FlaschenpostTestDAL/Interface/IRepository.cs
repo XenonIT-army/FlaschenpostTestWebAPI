@@ -14,6 +14,6 @@ namespace FlaschenpostTestDAL.Interface
         void Update(TEntity entity);
         void Delete(TEntity entity);
         bool Save();
-        public int GetNextId(Func<TEntity, int> keySelector);
+        //public int GetNextId(Func<TEntity, int> keySelector);
     }
 }

@@ -28,7 +28,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> Get(int id)
         {
-            _logger.LogInformation($"{nameof(CategoryController)} - HttpGet by id request");
+            _logger.LogInformation($"{nameof(TodoItemController)} - HttpGet by id request");
             var todoItem = await _todoItemService.GetByIdAsync(id);
             return todoItem == null ? NotFound("Item not found in DataBase") : Ok(todoItem);
         }
@@ -36,10 +36,10 @@ namespace FlaschenpostTestWebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] TodoItem todoItem)
         {
-            _logger.LogInformation($"{nameof(CategoryController)} - HttpPost request");
+            _logger.LogInformation($"{nameof(TodoItemController)} - HttpPost request");
             if (todoItem == null) return BadRequest();
             var item = await _todoItemService.AddAsync(new TodoItem {Title = todoItem.Title, Description = todoItem.Description,
-                CategoryId = todoItem.CategoryId, CreatedAt = todoItem.CreatedAt, CompletedAt =todoItem.CompletedAt, DueDate = todoItem.DueDate,
+                ProjectId = todoItem.ProjectId, CreatedAt = todoItem.CreatedAt, CompletedAt =todoItem.CompletedAt, DueDate = todoItem.DueDate,
              IsCompleted = todoItem.IsCompleted, Priority = todoItem.Priority});
              var res = await _todoItemService.Save();
 
@@ -51,7 +51,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] TodoItem todoItem)
         {
-            _logger.LogInformation($"{nameof(CategoryController)} - HttpPut request");
+            _logger.LogInformation($"{nameof(TodoItemController)} - HttpPut request");
             if (todoItem == null) return BadRequest();
 
             var item =  await _todoItemService.GetByIdAsync(todoItem.Id);
@@ -65,7 +65,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] TodoItem todoItem)
         {
-            _logger.LogInformation($"{nameof(CategoryController)} - HttpDelete request");
+            _logger.LogInformation($"{nameof(TodoItemController)} - HttpDelete request");
             if (todoItem == null) return BadRequest();
 
             var item = await _todoItemService.GetByIdAsync(todoItem.Id);

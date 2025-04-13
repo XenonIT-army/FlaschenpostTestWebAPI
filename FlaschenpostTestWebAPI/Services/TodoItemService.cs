@@ -63,14 +63,14 @@ namespace FlaschenpostTestWebAPI.Services
             });
         }
 
-        public Task<int> GetNextId(Func<TodoItem, int> keySelector)
-        {
-            return Task.Run(() =>
-            {
-                var entity = _todoItemRep.GetNextId(p => p.Id);
-                return mapper.Map<int>(entity);
-            });
-        }
+        //public Task<int> GetNextId(Func<TodoItem, int> keySelector)
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        var entity = _todoItemRep.GetNextId(p => p.Id);
+        //        return mapper.Map<int>(entity);
+        //    });
+        //}
 
         public Task Update(TodoItem dto)
         {

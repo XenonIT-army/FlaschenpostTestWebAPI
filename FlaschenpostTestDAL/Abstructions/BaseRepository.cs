@@ -65,17 +65,17 @@ namespace FlaschenpostTestDAL.Abstructions
             db.Dispose();
         }
 
-        public int GetNextId(Func<TEntity, int> keySelector)
-        {
-            var dbSet = db.Set<TEntity>();
-            if (dbSet.Any())
-            {
-                return dbSet.Max(keySelector) + 1;
-            }
-            else
-            {
-                return 1;
-            }
-        }
+        //public int GetNextId(Func<TEntity, int> keySelector)
+        //{
+        //    var dbSet = db.Set<TEntity>();
+        //    if (dbSet.Any())
+        //    {
+        //        return dbSet.Max(keySelector) + 1;
+        //    }
+        //    else
+        //    {
+        //        return 1;
+        //    }
+        //}
     }
 }

@@ -8,20 +8,22 @@ using System.Threading.Tasks;
 
 namespace FlaschenpostTestDAL.Entities
 {
-    [Table("Category")]
-    public partial class CategoryDB
+    [Table("Project")]
+    public partial class ProjectDB
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [StringLength(40)]
-        public string Title { get; set; }
+        public string? Title { get; set; }
         [Required]
         [StringLength(100)]
         public string? Description { get; set; }
 
-        public string? Color { get; set; }
+        public int CategoryId { get; set; }
+
+        public string? Icon { get; set; }
 
     }
 }

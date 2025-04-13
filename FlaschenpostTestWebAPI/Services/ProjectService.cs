@@ -6,34 +6,34 @@ using FlaschenpostTestWebAPI.Model;
 
 namespace FlaschenpostTestWebAPI.Services
 {
-    public class CategoryService : IService<Category>
+    public class ProjectService : IService<Project>
     {
-        private IRepository<CategoryDB> _categoryRep;
+        private IRepository<ProjectDB> _categoryRep;
         IMapper mapper;
 
 
-        public CategoryService(IRepository<CategoryDB> categoryRep)
+        public ProjectService(IRepository<ProjectDB> categoryRep)
         {
             _categoryRep = categoryRep;
             var config = new MapperConfiguration(cfg =>
             cfg
-            .CreateMap<CategoryDB, Category>().ReverseMap());
+            .CreateMap<ProjectDB, Project>().ReverseMap());
             mapper = config.CreateMapper();
         }
 
-        public Task<Category> AddAsync(Category dto)
+        public Task<Project> AddAsync(Project dto)
         {
             return Task.Run(() =>
             {
-                var entity = mapper.Map<CategoryDB>(dto);
+                var entity = mapper.Map<ProjectDB>(dto);
 
                 var item = _categoryRep.AddAsync(entity);
 
-                return mapper.Map<Category>(item);
+                return mapper.Map<Project>(item);
             });
         }
 
-        public Task Delete(Category dto)
+        public Task Delete(Project dto)
         {
             return Task.Run(() =>
             {
@@ -43,31 +43,31 @@ namespace FlaschenpostTestWebAPI.Services
             });
         }
 
-        public Task<IEnumerable<Category>> GetAllAsync()
+        public Task<IEnumerable<Project>> GetAllAsync()
         {
             return Task.Run(() =>
             {
                 var res = _categoryRep
                .GetAllAsync()
-               .Select(entity => mapper.Map<Category>(entity));
+               .Select(entity => mapper.Map<Project>(entity));
                 return res;
             });
         }
 
-        public Task<Category> GetByIdAsync(int id)
+        public Task<Project> GetByIdAsync(int id)
         {
             return Task.Run(() =>
             {
                 var entity = _categoryRep.GetByIdAsync(id);
-                return mapper.Map<Category>(entity);
+                return mapper.Map<Project>(entity);
             });
         }
 
-        public Task Update(Category dto)
+        public Task Update(Project dto)
         {
             return Task.Run(() =>
             {
-                var entity = mapper.Map<CategoryDB>(dto);
+                var entity = mapper.Map<ProjectDB>(dto);
                 _categoryRep.Update(entity);
                 return true;
             });

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace FlaschenpostTestDAL.Repositories
 {
-    public class TodoItemDBRepository : BaseRepository<TodoItemDB>
+    public class ProjectDBRepository : BaseRepository<ProjectDB>
     {
-        public TodoItemDBRepository(DbContext db) : base(db)
+        public ProjectDBRepository(DbContext db) : base(db)
         {
         }
     }

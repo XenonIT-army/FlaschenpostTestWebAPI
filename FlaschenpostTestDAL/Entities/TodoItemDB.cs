@@ -27,6 +27,6 @@ namespace FlaschenpostTestDAL.Entities
         public DateTime? DueDate { get; set; }
         public DateTime? CompletedAt { get; set; }
         public int? Priority { get; set; }
-        public int CategoryId { get; set; }
+        public int ProjectId { get; set; }
     }
 }

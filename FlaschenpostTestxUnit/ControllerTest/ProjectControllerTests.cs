@@ -1,6 +1,4 @@
-﻿using FlaschenpostTestWebAPI.Interface;
-using FlaschenpostTestWebAPI.Model;
-using FlaschenpostTestxUnit.Item;
+﻿using FlaschenpostTestxUnit.Item;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System;
@@ -11,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace FlaschenpostTestxUnit.ControllerTest
 {
-    public class CategoryControllerTests : IClassFixture<WebApplicationFactory<Program>>
+    public class ProjectControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
 
-        public CategoryControllerTests(WebApplicationFactory<Program> factory)
+        public ProjectControllerTests(WebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }
 
         [Theory]
-        [InlineData("/api/category/")]
-        public async Task Get_Category(string url)
+        [InlineData("/api/project/")]
+        public async Task Get_Project(string url)
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -36,8 +34,8 @@ namespace FlaschenpostTestxUnit.ControllerTest
         }
 
         [Theory]
-        [InlineData("/api/category/1")]
-        public async Task GetById_Category(string url)
+        [InlineData("/api/project/1")]
+        public async Task GetById_Project(string url)
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -55,8 +53,8 @@ namespace FlaschenpostTestxUnit.ControllerTest
         }
 
         [Theory]
-        [InlineData("/api/category/")]
-        public async Task Post_Category(string url)
+        [InlineData("/api/project/")]
+        public async Task Post_Project(string url)
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -72,8 +70,8 @@ namespace FlaschenpostTestxUnit.ControllerTest
         }
 
         [Theory]
-        [InlineData("/api/category/")]
-        public async Task Put_Category(string url)
+        [InlineData("/api/project/")]
+        public async Task Put_Project(string url)
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -93,8 +91,8 @@ namespace FlaschenpostTestxUnit.ControllerTest
             Assert.True(res);
         }
         [Theory]
-        [InlineData("http://localhost:5000/api/category/")]
-        public async Task Delete_Category(string url)
+        [InlineData("http://localhost:5000/api/project/")]
+        public async Task Delete_Project(string url)
         {
             // Arrange
             var client = _factory.CreateClient();
