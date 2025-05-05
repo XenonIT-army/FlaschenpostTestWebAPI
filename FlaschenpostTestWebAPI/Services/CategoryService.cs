@@ -3,6 +3,7 @@ using FlaschenpostTestDAL.Entities;
 using FlaschenpostTestDAL.Interface;
 using FlaschenpostTestWebAPI.Interface;
 using FlaschenpostTestWebAPI.Model;
+using System.Collections.Generic;
 
 namespace FlaschenpostTestWebAPI.Services
 {
@@ -21,65 +22,47 @@ namespace FlaschenpostTestWebAPI.Services
             mapper = config.CreateMapper();
         }
 
-        public Task<Category> AddAsync(Category dto)
+        public Task<Category> Add(Category dto)
         {
-            return Task.Run(() =>
-            {
-                var entity = mapper.Map<CategoryDB>(dto);
+            var entity = mapper.Map<CategoryDB>(dto);
 
-                var item = _categoryRep.AddAsync(entity);
-
-                return mapper.Map<Category>(item);
-            });
+            var item = _categoryRep.Add(entity);
+            return Task.FromResult<Category>(mapper.Map<Category>(item));
         }
 
-        public Task Delete(Category dto)
+        public Task<bool> Delete(Category dto)
         {
-            return Task.Run(() =>
-            {
-                var entity = _categoryRep.GetByIdAsync(dto.Id);
-                _categoryRep.Delete(entity);
-                return true;
-            });
+            var entity = _categoryRep.GetById(dto.Id);
+            _categoryRep.Delete(entity);
+            return Task.FromResult(true); 
         }
 
-        public Task<IEnumerable<Category>> GetAllAsync()
+        public Task<IEnumerable<Category>> GetAll()
         {
-            return Task.Run(() =>
-            {
-                var res = _categoryRep
-               .GetAllAsync()
+            var res = _categoryRep
+               .GetAll()
                .Select(entity => mapper.Map<Category>(entity));
-                return res;
-            });
+            return Task.FromResult<IEnumerable<Category>>(res);
         }
 
-        public Task<Category> GetByIdAsync(int id)
+        public Task<Category> GetById(int id)
         {
-            return Task.Run(() =>
-            {
-                var entity = _categoryRep.GetByIdAsync(id);
-                return mapper.Map<Category>(entity);
-            });
+            var entity = _categoryRep.GetById(id);
+            return Task.FromResult<Category>(mapper.Map<Category>(entity));
         }
 
-        public Task Update(Category dto)
+        public Task<bool> Update(Category dto)
         {
-            return Task.Run(() =>
-            {
-                var entity = mapper.Map<CategoryDB>(dto);
-                _categoryRep.Update(entity);
-                return true;
-            });
+            var entity = mapper.Map<CategoryDB>(dto);
+            _categoryRep.Update(entity);
+            return Task.FromResult(true);
+
         }
 
         public Task<bool> Save()
         {
-            return Task.Run(() =>
-            {
-                var res = _categoryRep.Save();
-                return res;
-            });
+            var res = _categoryRep.Save();
+            return Task.FromResult(res);
         }
     }
 }

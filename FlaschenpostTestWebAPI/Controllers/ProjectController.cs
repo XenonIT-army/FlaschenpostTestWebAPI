@@ -20,7 +20,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         public async Task<IEnumerable<Project>> Get()
         {
             _logger.LogInformation($"{nameof(ProjectController)} - HttpGet all request");
-            var list = await _projectService.GetAllAsync();
+            var list = await _projectService.GetAll();
             return list;
         }
 
@@ -28,7 +28,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         public async Task<ActionResult<Project>> Get(int id)
         {
             _logger.LogInformation($"{nameof(ProjectController)} - HttpGet by id request");
-            var category = await _projectService.GetByIdAsync(id);
+            var category = await _projectService.GetById(id);
             return category == null ? NotFound("Item not found in DataBase") : Ok(category);
         }
 
@@ -37,7 +37,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         {
             _logger.LogInformation($"{nameof(ProjectController)} - HttpPost request");
             if (project == null) return BadRequest();
-            var item = await _projectService.AddAsync(new Project { Title = project.Title, Description = project.Description,  CategoryId = project.CategoryId, Icon = project.Icon });
+            var item = await _projectService.Add(new Project { Title = project.Title, Description = project.Description,  CategoryId = project.CategoryId, Icon = project.Icon });
             var res = await _projectService.Save();
             project = item;
             return CreatedAtAction(nameof(Get), project);
@@ -49,7 +49,7 @@ namespace FlaschenpostTestWebAPI.Controllers
             _logger.LogInformation($"{nameof(ProjectController)} - HttpPut request");
             if (project == null) return BadRequest();
 
-            var item = await _projectService.GetByIdAsync(project.Id);
+            var item = await _projectService.GetById(project.Id);
             if (item == null) return NotFound("Item not found in DataBase");
 
             await _projectService.Update(project);
@@ -63,7 +63,7 @@ namespace FlaschenpostTestWebAPI.Controllers
             _logger.LogInformation($"{nameof(ProjectController)} - HttpDelete request");
             if (project == null) return BadRequest();
 
-            var item = await _projectService.GetByIdAsync(project.Id);
+            var item = await _projectService.GetById(project.Id);
             if (item == null) return NotFound("Item not found in DataBase");
 
             await _projectService.Delete(project);

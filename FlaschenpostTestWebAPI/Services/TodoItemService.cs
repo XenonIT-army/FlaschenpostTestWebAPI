@@ -21,74 +21,46 @@ namespace FlaschenpostTestWebAPI.Services
             mapper = config.CreateMapper();
         }
 
-        public Task<TodoItem> AddAsync(TodoItem dto)
+        public Task<TodoItem> Add(TodoItem dto)
         {
-            return Task.Run(() =>
-            {
                 var entity = mapper.Map<TodoItemDB>(dto);
-
-                var item = _todoItemRep.AddAsync(entity);
-
-                return mapper.Map<TodoItem>(item);
-            });
+                var item = _todoItemRep.Add(entity);
+                return Task.FromResult<TodoItem>(mapper.Map<TodoItem>(item));
         }
 
-        public Task Delete(TodoItem dto)
+        public Task<bool> Delete(TodoItem dto)
         {
-            return Task.Run(() =>
-            {
-                var entity = _todoItemRep.GetByIdAsync(dto.Id);
+                var entity = _todoItemRep.GetById(dto.Id);
                 _todoItemRep.Delete(entity);
-                return true;
-            });
+            return Task.FromResult(true);
         }
 
-        public Task<IEnumerable<TodoItem>> GetAllAsync()
+        public Task<IEnumerable<TodoItem>> GetAll()
         {
-            return Task.Run(() =>
-            {
+           
                 var res = _todoItemRep
-               .GetAllAsync()
+               .GetAll()
                .Select(entity => mapper.Map<TodoItem>(entity));
-                return res;
-            });
+                return Task.FromResult<IEnumerable<TodoItem>>(res);
         }
 
-        public Task<TodoItem> GetByIdAsync(int id)
+        public Task<TodoItem> GetById(int id)
         {
-            return Task.Run(() =>
-            {
-                var entity = _todoItemRep.GetByIdAsync(id);
-                return mapper.Map<TodoItem>(entity);
-            });
+                var entity = _todoItemRep.GetById(id);
+            return Task.FromResult(mapper.Map<TodoItem>(entity));
         }
 
-        //public Task<int> GetNextId(Func<TodoItem, int> keySelector)
-        //{
-        //    return Task.Run(() =>
-        //    {
-        //        var entity = _todoItemRep.GetNextId(p => p.Id);
-        //        return mapper.Map<int>(entity);
-        //    });
-        //}
-
-        public Task Update(TodoItem dto)
+        public Task<bool> Update(TodoItem dto)
         {
-            return Task.Run(() =>
-            {
                 var entity = mapper.Map<TodoItemDB>(dto);
                 _todoItemRep.Update(entity);
-                return true;
-            });
+            return Task.FromResult(true);
         }
 
         public Task<bool> Save()
         {
-            return Task.Run(() =>
-            {
                 _todoItemRep.Save();
-                return true;
-            });
+            return Task.FromResult(true);
         }
     }
 }

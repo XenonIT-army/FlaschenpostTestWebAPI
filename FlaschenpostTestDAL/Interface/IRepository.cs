@@ -8,9 +8,9 @@ namespace FlaschenpostTestDAL.Interface
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        TEntity GetByIdAsync(int id);
-        List<TEntity> GetAllAsync();
-        TEntity AddAsync(TEntity entity);
+        TEntity GetById(int id);
+        List<TEntity> GetAll();
+        TEntity Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
         bool Save();

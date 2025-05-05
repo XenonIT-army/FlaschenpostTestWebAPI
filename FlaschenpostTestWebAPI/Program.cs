@@ -34,6 +34,8 @@ var app = builder.Build();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//adding test data to the database
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();

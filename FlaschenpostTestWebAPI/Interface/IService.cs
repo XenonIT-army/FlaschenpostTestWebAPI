@@ -2,11 +2,11 @@
 {
     public interface IService<TEntityDto>
     {
-        Task<TEntityDto> GetByIdAsync(int id);
-        Task<IEnumerable<TEntityDto>> GetAllAsync();
-        Task<TEntityDto> AddAsync(TEntityDto dto);
-        Task Update(TEntityDto dto);
-        Task Delete(TEntityDto dto);
+        Task<TEntityDto> GetById(int id);
+        Task<IEnumerable<TEntityDto>> GetAll();
+        Task<TEntityDto> Add(TEntityDto dto);
+        Task<bool> Update(TEntityDto dto);
+        Task<bool> Delete(TEntityDto dto);
         //public Task<int> GetNextId(Func<TEntityDto, int> keySelector);
         Task<bool> Save();
     }

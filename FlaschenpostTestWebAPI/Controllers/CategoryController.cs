@@ -22,7 +22,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         public async Task<IEnumerable<Category>> Get()
         {
             _logger.LogInformation($"{nameof(CategoryController)} - HttpGet all request");
-            var list = await _categoryService.GetAllAsync();
+            var list = await _categoryService.GetAll();
             return list;
         }
 
@@ -30,7 +30,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         public async Task<ActionResult<Category>> Get(int id)
         {
             _logger.LogInformation($"{nameof(CategoryController)} - HttpGet by id request");
-            var category = await _categoryService.GetByIdAsync(id);
+            var category = await _categoryService.GetById(id);
             return category == null ? NotFound("Item not found in DataBase") : Ok(category);
         }
 
@@ -39,7 +39,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         {
             _logger.LogInformation($"{nameof(CategoryController)} - HttpPost request");
             if (category == null) return BadRequest();
-            var item = await _categoryService.AddAsync(new Category {Title = category.Title, Description = category.Description });
+            var item = await _categoryService.Add(new Category {Title = category.Title, Description = category.Description });
             var res = await _categoryService.Save();
             category = item;
             return CreatedAtAction(nameof(Get),category);
@@ -51,7 +51,7 @@ namespace FlaschenpostTestWebAPI.Controllers
             _logger.LogInformation($"{nameof(CategoryController)} - HttpPut request");
             if (category == null) return BadRequest();
 
-            var item = await _categoryService.GetByIdAsync(category.Id);
+            var item = await _categoryService.GetById(category.Id);
             if (item == null) return NotFound("Item not found in DataBase");
 
             await _categoryService.Update(category);
@@ -65,7 +65,7 @@ namespace FlaschenpostTestWebAPI.Controllers
             _logger.LogInformation($"{nameof(CategoryController)} - HttpDelete request");
             if (category == null) return BadRequest();
 
-            var item = await _categoryService.GetByIdAsync(category.Id);
+            var item = await _categoryService.GetById(category.Id);
             if (item == null) return NotFound("Item not found in DataBase");
 
             await _categoryService.Delete(category);

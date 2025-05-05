@@ -18,7 +18,7 @@ namespace FlaschenpostTestDAL.Abstructions
             _dbSet = this.db.Set<TEntity>();
         }
 
-        public TEntity GetByIdAsync(int id)
+        public TEntity GetById(int id)
         {
             var entity = _dbSet.FindAsync(id).Result;
             if (entity != null)
@@ -28,12 +28,12 @@ namespace FlaschenpostTestDAL.Abstructions
             return entity;
         }
 
-        public List<TEntity> GetAllAsync()
+        public List<TEntity> GetAll()
         {
             return  _dbSet.ToListAsync().Result;
         }
 
-        public TEntity AddAsync(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             var item = _dbSet.AddAsync(entity).Result.Entity;
             return item;

@@ -21,7 +21,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         public async Task<IEnumerable<TodoItem>> Get()
         {
             _logger.LogInformation($"{nameof(CategoryController)} - HttpGet all request");
-            var list =  await _todoItemService.GetAllAsync();
+            var list =  await _todoItemService.GetAll();
             return list;
         }
 
@@ -29,7 +29,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         public async Task<ActionResult<TodoItem>> Get(int id)
         {
             _logger.LogInformation($"{nameof(TodoItemController)} - HttpGet by id request");
-            var todoItem = await _todoItemService.GetByIdAsync(id);
+            var todoItem = await _todoItemService.GetById(id);
             return todoItem == null ? NotFound("Item not found in DataBase") : Ok(todoItem);
         }
 
@@ -38,7 +38,7 @@ namespace FlaschenpostTestWebAPI.Controllers
         {
             _logger.LogInformation($"{nameof(TodoItemController)} - HttpPost request");
             if (todoItem == null) return BadRequest();
-            var item = await _todoItemService.AddAsync(new TodoItem {Title = todoItem.Title, Description = todoItem.Description,
+            var item = await _todoItemService.Add(new TodoItem {Title = todoItem.Title, Description = todoItem.Description,
                 ProjectId = todoItem.ProjectId, CreatedAt = todoItem.CreatedAt, CompletedAt =todoItem.CompletedAt, DueDate = todoItem.DueDate,
              IsCompleted = todoItem.IsCompleted, Priority = todoItem.Priority});
              var res = await _todoItemService.Save();
@@ -54,7 +54,7 @@ namespace FlaschenpostTestWebAPI.Controllers
             _logger.LogInformation($"{nameof(TodoItemController)} - HttpPut request");
             if (todoItem == null) return BadRequest();
 
-            var item =  await _todoItemService.GetByIdAsync(todoItem.Id);
+            var item =  await _todoItemService.GetById(todoItem.Id);
             if(item == null) return NotFound("Item not found in DataBase");
 
             await _todoItemService.Update(todoItem);
@@ -68,7 +68,7 @@ namespace FlaschenpostTestWebAPI.Controllers
             _logger.LogInformation($"{nameof(TodoItemController)} - HttpDelete request");
             if (todoItem == null) return BadRequest();
 
-            var item = await _todoItemService.GetByIdAsync(todoItem.Id);
+            var item = await _todoItemService.GetById(todoItem.Id);
             if (item == null) return NotFound("Item not found in DataBase");
 
             await _todoItemService.Delete(todoItem);
